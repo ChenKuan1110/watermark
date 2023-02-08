@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import axios from 'axios'
 
+const API_BASE = 'https://www.fodownloader.com/csgeturl'
 
 function App() {
   const [url, setUrl] = useState('')
@@ -8,18 +9,17 @@ function App() {
 
 
   const parse = () => {
-    // 1. 验证
-    if (!/h5.pipix.com/.test(url)) {
-      setUrl('')
-    }
     const encodeUrl = encodeURIComponent(url)
-    const requestUrl = `/api?urlInfo=${ encodeUrl }&lang=zh-cn`
+    const requestUrl = import.meta.env.PROD ? `${API_BASE}?urlInfo=${ encodeUrl }&lang=zh-cn`:`/api?urlInfo=${ encodeUrl }&lang=zh-cn`
     console.log(requestUrl)
     axios.get(requestUrl).then(res => {
       const { data } = res
       const wrapper = document.createElement('div')
       wrapper.innerHTML = data
-      divRef.current?.appendChild(wrapper)
+      if (divRef.current) {
+        divRef.current.innerHTML = ''
+        divRef.current?.appendChild(wrapper)
+      }
     })
   }
 
