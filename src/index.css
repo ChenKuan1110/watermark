@@ -80,6 +80,13 @@ button:focus-visible {
 }
 
 
+
+.App{
+  min-width: 500px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .tips{
   margin-top: 2rem;
   font-size: 0.8rem;
@@ -95,4 +102,15 @@ button:focus-visible {
 .href{
   color: #535bf2;
   text-decoration: underline;
+}
+.wrapper{
+  min-width: 320px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.wrapper video{
+  width: 100%;
+}
+.wrapper button{
+  display: none;
 }
